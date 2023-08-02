@@ -8,7 +8,7 @@ import ProductsDetails from "../Pages/ProductsDetails";
 export const MainRoutes = () => {
   return (
     <Routes>
-      <Route path="/Shop" element={<Shop />} />
+      <Route path="/" element={<Shop />} />
       <Route path="/PlantCare" element={<PlantCare />} />
       <Route path="/PlantDetail/:slug" element={<ProductsDetails />} />
     </Routes>

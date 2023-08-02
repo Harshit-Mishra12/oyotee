@@ -20,7 +20,7 @@ const NavCategory = [
   {
     id: 1,
     category_name: "Shop",
-    route_name: "Shop",
+    route_name: "",
   },
   {
     id: 2,
