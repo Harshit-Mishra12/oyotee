@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Image,
@@ -11,9 +11,19 @@ import {
 } from "@chakra-ui/react";
 import { FaHeart, FaTimes, FaRuler, FaCat } from "react-icons/fa";
 import "../../Constants/index.css";
+import { useSelector } from "react-redux";
 
 const ProductDetailCards = () => {
+  const { SelectedProduct } = useSelector((store) => store.AppReducer);
   const [isWishlist, setWishlist] = useState(false);
+  const [selectedTab, setSelectedTab] = useState("details");
+  const [productDetails, setProductDetails] = useState([]);
+
+  useEffect(() => {
+    console.log("rendering:", SelectedProduct);
+    setProductDetails(SelectedProduct);
+  }, [SelectedProduct]);
+
   const handleWishlistChange = () => {
     setWishlist(!isWishlist);
   };
@@ -28,10 +38,10 @@ const ProductDetailCards = () => {
     >
       <Box position="relative">
         <Image
-          src="https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBsYW50cyUyMHBvdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60"
+          src={productDetails.image_url}
           alt="Card Image"
           width="100%"
-          maxH="300px"
+          height="300px"
           objectFit="cover"
         />
         <HStack
@@ -77,7 +87,7 @@ const ProductDetailCards = () => {
       <Flex flexDirection={"column"} p="4">
         <VStack alignItems={"start"}>
           <Text size="sm" fontWeight="normal" mb="2">
-            {"Monstera DK Var (L)"}
+            {productDetails.title}
           </Text>
         </VStack>
 
@@ -95,94 +105,110 @@ const ProductDetailCards = () => {
         marginBottom={"5"}
       >
         <HStack
-          _hover={{ borderBottom: "2px solid green" }}
-          borderBottom={"2px solid #ffffff"}
+          cursor={"pointer"}
+          borderBottom={
+            selectedTab === "details" ? "2px solid green" : "2px solid #fff"
+          }
           width={"full"}
+          justifyContent={"center"}
+          onClick={() => setSelectedTab("details")}
         >
           <Text fontSize="sm" marginLeft={"4"}>
             {"Details"}
           </Text>
         </HStack>
         <HStack
-          _hover={{ borderBottom: "2px solid green" }}
-          borderBottom={"2px solid #ffffff"}
+          cursor={"pointer"}
+          borderBottom={
+            selectedTab === "reviews" ? "2px solid green" : "2px solid #fff"
+          }
           width={"full"}
+          justifyContent={"center"}
+          onClick={() => setSelectedTab("reviews")}
         >
           <Text fontSize="sm" marginLeft={"4"}>
-            {"Reviews (32)"}
+            {"Reviews"} {"("}
+            {productDetails.reviews}
+            {")"}
           </Text>
         </HStack>
       </Flex>
-      {/*tab box */}
-      <Box>
-        <Flex
-          flexDirection={"row"}
-          justifyContent={"space-around"}
-          marginTop={"4"}
-        >
-          <HStack>
-            <Icon
-              as={FaRuler}
-              color={"yellow.500"}
-              boxSize={2}
-              cursor="pointer"
-            />
-
-            <Text fontSize={"8px"}>{" 120cm"}</Text>
-          </HStack>
-          <HStack>
-            <Icon
-              as={FaCat}
-              color={"yellow.500"}
-              boxSize={2}
-              cursor="pointer"
-            />
-            <Text fontSize={"8px"}>{"Animal Save"}</Text>
-          </HStack>
-        </Flex>
-        <Flex
-          flexDirection={"row"}
-          justifyContent={"space-around"}
-          marginTop={"4"}
-          marginBottom={"2"}
-        >
-          <HStack>
-            <Box
-              position={"relative"}
-              borderRadius={"5px"}
-              backgroundColor={"#fef0f2"}
-              w={"4"}
-              h={"4"}
-            >
+      {/*detail tab box */}
+      {selectedTab === "details" ? (
+        <Box>
+          <Flex
+            flexDirection={"row"}
+            justifyContent={"space-around"}
+            marginTop={"4"}
+          >
+            <HStack>
               <Icon
-                position={"absolute"}
-                as={FaHeart}
-                color={"red.500"}
+                as={FaRuler}
+                color={"yellow.500"}
                 boxSize={2}
                 cursor="pointer"
-                top={"50%"}
-                left={"50%"}
-                transform="translate(-50%, -50%)"
-                // outline={'1px solid red'}
-                onClick={handleWishlistChange}
               />
-            </Box>
-          </HStack>
-          <HStack>
-            <Button
-              className="button_cart"
-              marginLeft={"0"}
-              style={{
-                backgroundColor: "green",
-                color: "white",
-              }}
-            >
-              {"Rs 325"} {" - "}
-              {"Add to cart"}
-            </Button>
-          </HStack>
-        </Flex>
-      </Box>
+
+              <Text fontSize={"8px"}>{" 120cm"}</Text>
+            </HStack>
+            <HStack>
+              <Icon
+                as={FaCat}
+                color={"yellow.500"}
+                boxSize={2}
+                cursor="pointer"
+              />
+              <Text fontSize={"8px"}>{"Animal Save"}</Text>
+            </HStack>
+          </Flex>
+          <Flex
+            flexDirection={"row"}
+            justifyContent={"space-around"}
+            marginTop={"4"}
+            marginBottom={"2"}
+          >
+            <HStack>
+              <Box
+                position={"relative"}
+                borderRadius={"5px"}
+                backgroundColor={"#fef0f2"}
+                w={"4"}
+                h={"4"}
+              >
+                <Icon
+                  position={"absolute"}
+                  as={FaHeart}
+                  color={"red.500"}
+                  boxSize={2}
+                  cursor="pointer"
+                  top={"50%"}
+                  left={"50%"}
+                  transform="translate(-50%, -50%)"
+                  onClick={handleWishlistChange}
+                />
+              </Box>
+            </HStack>
+            <HStack>
+              <Button
+                className="button_cart"
+                marginLeft={"0"}
+                style={{
+                  backgroundColor: "green",
+                  color: "white",
+                }}
+              >
+                {"Rs "}
+                {productDetails.price} {" - "}
+                {"Add to cart"}
+              </Button>
+            </HStack>
+          </Flex>
+        </Box>
+      ) : (
+        <Box>
+          <Text>Working....</Text>
+        </Box>
+      )}
     </Box>
   );
 };

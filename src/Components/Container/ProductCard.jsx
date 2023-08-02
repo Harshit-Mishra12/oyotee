@@ -13,12 +13,24 @@ import { StarIcon } from "@chakra-ui/icons";
 import { FaHeart } from "react-icons/fa";
 import { FiHeart } from "react-icons/fi";
 import "../../Constants/index.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { getSelectedProductDetail } from "../../Redux/AppReducer/Action";
 
-const ProductCard = () => {
+const ProductCard = ({ el }) => {
+  const { title, image_url, price, rating, reviews } = el;
   const [isWishlist, setWishlist] = useState(false);
-
-  const handleWishlistChange = () => {
+  const dispatch = useDispatch();
+  const handleWishlistChange = (event) => {
+    event.stopPropagation(); // Prevent event propagation
     setWishlist(!isWishlist);
+    const message = !isWishlist
+      ? "Product added to wishlist successfully!"
+      : "Product removed from wishlist successfully!";
+    toast.success(message, {
+      autoClose: 1000, // Toast will be shown for 3 seconds
+    });
   };
   return (
     <Box
@@ -27,9 +39,12 @@ const ProductCard = () => {
       overflow="hidden"
       boxShadow="md"
       position={"relative"}
+      cursor={"pointer"}
+      onClick={() => dispatch(getSelectedProductDetail(el))}
+      // onClick={()=>navigate(`/PlantDetail/${encodeURIComponent(generateSlug('Monstera DK Var (L)','10'))}`)}
     >
       <Image
-        src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGxhbnRzJTIwcG90fGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
+        src={image_url}
         alt="Card Image"
         width={"100%"}
         maxH="150px"
@@ -47,15 +62,15 @@ const ProductCard = () => {
       />
       <Box p="4">
         <Text size="sm" fontWeight="normal" mb="2" textAlign={"start"}>
-          {"Monstera DK Var (L)"}
+          {title}
         </Text>
         <Flex>
           <HStack spacing="1">
-            {[1, 2, 3, 4, 5].map((num) => (
+            {[1, 2, 3, 4, 5].map((num, index) => (
               <Icon
-                key={num}
+                key={index}
                 as={StarIcon}
-                color={"yellow.500"}
+                color={rating > index ? "yellow.500" : "gray.500"}
                 boxSize={2}
                 cursor="pointer"
                 // onClick={() => handleRatingChange(num)}
@@ -65,7 +80,7 @@ const ProductCard = () => {
           <HStack>
             <Text fontSize="sm" marginLeft={"4"}>
               {"("}
-              {80}
+              {reviews}
               {")"}
             </Text>
           </HStack>
@@ -81,7 +96,8 @@ const ProductCard = () => {
             {"Price"}
           </Text>
           <Text fontSize="sm" marginLeft={"4"}>
-            {"Rs 325"}
+            {"Rs "}
+            {price}
           </Text>
         </VStack>
         <HStack>

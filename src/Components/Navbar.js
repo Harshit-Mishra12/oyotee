@@ -8,39 +8,48 @@ import {
   Icon,
   Flex,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import profile from "../Assets/profile.jpeg";
 import "../Constants/index.css";
 import { CiHeart } from "react-icons/ci";
 import { BsHandbag } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import styles from "../Css/navbar.module.css";
 
 const NavCategory = [
   {
     id: 1,
     category_name: "Shop",
+    route_name: "Shop",
   },
   {
     id: 2,
     category_name: "Plant care",
+    route_name: "PlantCare",
   },
   {
     id: 3,
     category_name: "Workshops",
+    route_name: "Workshops",
   },
   {
     id: 4,
     category_name: "Blogs",
+    route_name: "Blogs",
   },
 ];
 
 export const Navbar = () => {
   //eslint-disable-next-line
   const [type, setType] = useState(NavCategory);
+  const location = useLocation();
   const navigate = useNavigate();
-    //eslint-disable-next-line
-  const [selectedCategory, setSelectedCategory] = useState(0);
+  const currentRoute = location.pathname.substring(1);
+  const [routeName, setRouteName] = useState("");
+
+  useEffect(() => {
+    setRouteName(currentRoute);
+  }, [currentRoute]);
 
   return (
     <>
@@ -71,7 +80,7 @@ export const Navbar = () => {
                     width={"100%"}
                     alt="logo"
                     fallbackSrc={
-                      "https://vastra-com.netlify.app/static/media/logo.907393fa26947a42ac8a.png"
+                      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGxhbnRzJTIwcG90fGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60"
                     }
                     cursor="pointer"
                   />
@@ -92,15 +101,16 @@ export const Navbar = () => {
                   <Box
                     key={index}
                     _hover={{
-                      borderBottom: "5px solid green",
+                      borderBottom: "3px solid green",
                     }}
                     borderBottom={
-                      selectedCategory === String(el.id)
-                        ? "5px solid green"
-                        : "5px solid #ffffff"
+                      routeName === String(el.route_name)
+                        ? "3px solid green"
+                        : "3px solid #ffffff"
                     }
                     cursor="pointer"
                     transition="border-bottom 0.3s ease-in-out" // Add transition property
+                    onClick={() => navigate("/".concat(el.route_name))}
                   >
                     <Text className={styles.tabs}>{el.category_name}</Text>
                   </Box>
