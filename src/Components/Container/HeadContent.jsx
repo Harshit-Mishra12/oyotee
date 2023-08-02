@@ -59,7 +59,7 @@ export const HeadContent = () => {
                 border="1px"
                 borderColor="gray.300"
                 backgroundColor={"white"}
-                _hover={{ backgroundColor: "green" }}
+                _hover={{ backgroundColor: "green" ,color:"white"}}
                 rightIcon={<ChevronDownIcon />}
               >
                 {" "}
@@ -71,7 +71,7 @@ export const HeadContent = () => {
                 border="1px"
                 borderColor="gray.300"
                 backgroundColor={"white"}
-                _hover={{ backgroundColor: "green " }}
+                _hover={{ backgroundColor: "green" ,color:"white"}}
               >
                 {" "}
                 {item}
