@@ -1,0 +1,75 @@
+export const products=[
+    {
+        id:1,
+        title:'Monstera DK Var (L)',
+        image_url:"https://images.unsplash.com/photo-1485955900006-10f4d324d411?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OXx8cGxhbnRzJTIwcG90fGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+        price:300,
+        rating:3,
+        reviews:50,
+        description:"",
+        images:[
+            {
+                id:1,
+                image_url:"https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBsYW50cyUyMHBvdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+            },
+            {
+                id:2,
+                image_url:"https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBsYW50cyUyMHBvdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+            }
+        ]
+    },
+    {
+        id:2,
+        title:'Monstera Deliciosa (L)',
+        image_url:"https://plus.unsplash.com/premium_photo-1673468196436-6257c32656c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHBsYW50fGVufDB8fDB8fHww&auto=format&fit=crop&w=600&q=60",
+        price:400,
+        rating:5,
+        reviews:30,
+        images:[
+            {
+                id:1,
+                image_url:"https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBsYW50cyUyMHBvdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+            },
+            {
+                id:2,
+                image_url:"https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBsYW50cyUyMHBvdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+            }
+        ]
+    },
+    {
+        id:3,
+        title:'Bonsai (L)',
+        image_url:"https://images.unsplash.com/photo-1509423350716-97f9360b4e09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGxhbnQlMjBwb3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+        price:200,
+        rating:2,
+        reviews:30,
+        images:[
+            {
+                id:1,
+                image_url:"https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBsYW50cyUyMHBvdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+            },
+            {
+                id:2,
+                image_url:"https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBsYW50cyUyMHBvdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+            }
+        ]
+    },
+    {
+        id:4,
+        title:'Fern (L)',
+        image_url:"https://images.unsplash.com/photo-1609062111394-0427aa22d6c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGxhbnQlMjBwb3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=600&q=60",
+        price:300,
+        rating:1,
+        reviews:20,
+        images:[
+            {
+                id:1,
+                image_url:"https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBsYW50cyUyMHBvdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+            },
+            {
+                id:2,
+                image_url:"https://images.unsplash.com/photo-1463320898484-cdee8141c787?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBsYW50cyUyMHBvdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=600&q=60",
+            }
+        ]
+    }
+]
